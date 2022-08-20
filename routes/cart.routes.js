@@ -37,7 +37,6 @@ cartV1
           isAddedToCart: true,
           quantitiesInCart: 1,
         });
-        user.cart.qty++;
         const updatedUser = await user.save();
         res.json({ success: true, cart: updatedUser.cart });
       }
@@ -56,12 +55,15 @@ cartV1.route("/:id").delete(authVerify, async (req, res) => {
     const { id } = req.params;
     const user = await User.findById(userId);
     if (user) {
-      const updatedCartProducts = user.cart.products.filter(
-        (product) => product._id !== id
+      await User.updateOne(
+        { _id: userId },
+        {
+          $pull: { "cart.products": { _id: id } },
+        },
+        { new: true }
       );
-      user.cart.products = updatedCartProducts;
-      user.cart.qty--;
-      const updatedUser = await user.save();
+      const updatedUser = await User.findById(userId);
+      await updatedUser.save();
       res.json({ success: true, cart: updatedUser.cart });
     }
   } catch (err) {
@@ -72,4 +74,5 @@ cartV1.route("/:id").delete(authVerify, async (req, res) => {
     });
   }
 });
+
 module.exports = { cartV1 };

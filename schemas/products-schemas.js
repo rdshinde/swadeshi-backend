@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const productSchema = new Schema({
-  _id: Number,
+  _id: { type: String, required: true },
   name: String,
   make: String,
   imageUrl: String,
@@ -15,7 +15,10 @@ const productSchema = new Schema({
   isWishlisted: { type: Boolean, default: false },
   isAddedToCart: { type: Boolean, default: false },
   isFastDelivery: { type: Boolean, default: false },
-  availableSize: { type: [], default: ["XS", "S", "L", "XL", "XXL", "3XL"] },
+  availableSize: {
+    type: [String],
+    default: ["XS", "S", "L", "XL", "XXL", "3XL"],
+  },
   categoryName: String,
   count: { type: Number, default: 10 },
 });
