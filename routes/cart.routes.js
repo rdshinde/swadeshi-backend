@@ -49,30 +49,72 @@ cartV1
     }
   });
 
-cartV1.route("/:id").delete(authVerify, async (req, res) => {
-  try {
-    const { userId } = req.user;
-    const { id } = req.params;
-    const user = await User.findById(userId);
-    if (user) {
-      await User.updateOne(
-        { _id: userId },
-        {
-          $pull: { "cart.products": { _id: id } },
-        },
-        { new: true }
-      );
-      const updatedUser = await User.findById(userId);
-      await updatedUser.save();
-      res.json({ success: true, cart: updatedUser.cart });
+cartV1
+  .route("/:id")
+  .delete(authVerify, async (req, res) => {
+    try {
+      const { userId } = req.user;
+      const { id } = req.params;
+      const user = await User.findById(userId);
+      if (user) {
+        await User.updateOne(
+          { _id: userId },
+          {
+            $pull: { "cart.products": { _id: id } },
+          },
+          { new: true }
+        );
+        const updatedUser = await User.findById(userId);
+        await updatedUser.save();
+        res.json({ success: true, cart: updatedUser.cart });
+      }
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: "Unable to delete cart product.",
+        errorMessage: err.message,
+      });
     }
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: "Unable to delete cart product.",
-      errorMessage: err.message,
-    });
-  }
-});
+  })
+  .post(authVerify, async (req, res) => {
+    try {
+      const { userId } = req.user;
+      const { id } = req.params;
+      const user = await User.findById(userId);
+      const actionType = req.body.action.type;
+      if (user) {
+        if (actionType === "increment") {
+          await User.updateOne(
+            { _id: userId, "cart.products._id": id },
+            {
+              $inc: {
+                "cart.products.$.quantitiesInCart": 1,
+              },
+            },
+            { new: true }
+          );
+        } else if (actionType === "decrement") {
+          await User.updateOne(
+            { _id: userId, "cart.products._id": id },
+            {
+              $inc: {
+                "cart.products.$.quantitiesInCart": -1,
+              },
+            },
+            { new: true }
+          );
+        }
+        const updatedUser = await User.findById(userId);
+        await updatedUser.save();
+        res.json({ success: true, cart: updatedUser.cart });
+      }
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: "Unable to delete cart product.",
+        errorMessage: err.message,
+      });
+    }
+  });
 
 module.exports = { cartV1 };

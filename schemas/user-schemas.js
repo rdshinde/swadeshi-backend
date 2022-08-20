@@ -33,9 +33,5 @@ UserSchema.pre("save", function (next) {
   this.updatedAt = Date.now();
   next();
 });
-UserSchema.post("updateOne", function () {
-  this.set({ "cart.qty": this.cart?.products.length });
-  this.set({ "this.updatedAt": Date.now() });
-});
 
 module.exports = { UserSchema };
