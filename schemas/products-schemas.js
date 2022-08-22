@@ -20,7 +20,11 @@ const productSchema = new Schema({
     default: ["XS", "S", "L", "XL", "XXL", "3XL"],
   },
   categoryName: String,
-  quantitiesInCart: { type: Number, default: 0 },
+  quantitiesInCart: {
+    type: Number,
+    default: 0,
+    min: [0, "Items quantity cannot be negative!"],
+  },
   count: { type: Number, default: 10 },
 });
 
