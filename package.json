@@ -1,0 +1,31 @@
+{
+  "name": "swadeshi-backend",
+  "version": "1.0.0",
+  "description": "A backend for swadeshi e-commerce app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rdshinde/swadeshi-backend.git"
+  },
+  "author": "Rishikesh Shinde",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rdshinde/swadeshi-backend/issues"
+  },
+  "homepage": "https://github.com/rdshinde/swadeshi-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^3.1.2",
+    "jwt-encode": "^1.0.1",
+    "mongoose": "^6.5.2",
+    "nodemon": "^2.0.19",
+    "uuid": "^8.3.2"
+  }
+}
