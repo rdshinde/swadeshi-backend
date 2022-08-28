@@ -48,27 +48,4 @@ productsV1.route("/:id").get(async (req, res) => {
   }
 });
 
-//   .post((req, res) => {
-//     const { id } = req.params;
-//     console.log(typeof id);
-//     const updateProduct = req.body;
-
-//     // Temp code, will be replaced by DB
-//     products.forEach((product) => {
-//       if (product.id === parseInt(id, 10)) {
-//         // match
-//         Object.keys(updateProduct).forEach((key) => {
-//           if (key in product) {
-//             product[key] = updateProduct[key];
-//           }
-//         });
-//       }
-//     });
-
-//     res.json({ products, success: true });
-//   })
-//   .delete((req, res) =>
-//     res.json({ success: false, message: "delete not implemented" })
-//   );
-
 module.exports = { productsV1 };

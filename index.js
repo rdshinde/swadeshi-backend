@@ -9,10 +9,10 @@ app.use(express.urlencoded({ extended: true })); // support encoded bodies
 
 app.use(cors());
 
-// const { aythVarify } = require("./middlewares/auth.middleware");
 const { connectDB } = require("./db/db.connect.js");
 
 connectDB();
+
 const { DocsObj } = require("./utils");
 const { productsV1 } = require("./routes/product.routes");
 const { categoryV1 } = require("./routes/categories.routes");
