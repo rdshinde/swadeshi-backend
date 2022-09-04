@@ -5,7 +5,7 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT;
 app.use(express.json());
-
+app.set("json spaces", 4);
 app.use(express.urlencoded({ extended: true })); // support encoded bodies
 
 app.use(cors());
