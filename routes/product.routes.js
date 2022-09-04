@@ -34,7 +34,7 @@ productsV1
 productsV1.route("/:id").get(async (req, res) => {
   try {
     const { id } = req?.params;
-    const product = await Product.find({ _id: id.toString() });
+    const product = await Product.find({ _id: id });
 
     if (product) {
       return res.json({ product, success: true });
