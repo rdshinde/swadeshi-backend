@@ -4,7 +4,11 @@ require("dotenv").config();
 const dbPWD = process.env.DB_PASSWORD;
 const dbUser = process.env.DB_USER;
 
-const mongoURI = `mongodb+srv://${dbUser}:${dbPWD}@cluster0.t5f55xn.mongodb.net/test`;
+const mongoDBURI = process.env.MONGO_URI;
+
+const mongoURI =
+  `mongodb+srv://${dbUser}:${dbPWD}@cluster0.t5f55xn.mongodb.net/test` ||
+  mongoDBURI;
 
 const connectDB = async () => {
   await mongoose
