@@ -20,6 +20,7 @@ const { categoryV1 } = require("./routes/categories.routes");
 const { authV1 } = require("./routes/auth.routes");
 const { cartV1 } = require("./routes/cart.routes");
 const { wishlistV1 } = require("./routes/wishlist.routes");
+const { addressV1 } = require("./routes/address.routes");
 
 app.use("/products", productsV1);
 
@@ -30,6 +31,8 @@ app.use("/auth", authV1);
 app.use("/user/cart", cartV1);
 
 app.use("/user/wishlist", wishlistV1);
+
+app.use("/user/address", addressV1);
 
 app.get("/", (req, res) => {
   res.json({ ...DocsObj });

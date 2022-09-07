@@ -38,7 +38,7 @@ cartV1
           quantitiesInCart: 1,
         });
         const updatedUser = await user.save();
-        res.json({ success: true, cart: updatedUser.cart });
+        res.status(201).json({ success: true, cart: updatedUser.cart });
       }
     } catch (err) {
       res.status(500).json({
