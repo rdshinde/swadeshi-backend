@@ -50,6 +50,71 @@ $ npm start
 - Mongo DB Atlas
 - Mongoose
 
+## **How to Use? -**
+
+#### 1. API Endpoint: ` / ` </br>
+   Method: `GET` </br>
+   Response 
+```json 
+{
+    "title": "Swadeshi-Ecomm-App",
+    "description": "This is backend for E-commenrce app.",
+    "author": "Rishikesh Shinde",
+    "features": [
+        "Auth-Management",
+        "Products-Management",
+        "Cart-Management",
+        "Wishlist-Management"
+    ],
+ }
+```
+   Description: This endpoint returns the app description.
+
+# Products Management
+
+#### 2. API Endpoint: ` /products ` </br>
+   Method: `GET` </br>
+   Response 
+```json 
+{
+    "success": true,
+    "products": []
+}
+```
+   Description: This endpoint returns the products listed on DB.
+   
+   
+
+#### 3. API Endpoint: ` /products ` </br>
+   Method: `POST` </br>
+   ```javascript
+   body:{...Product}
+   ```
+   Response 
+```json 
+{
+    "success": true,
+    "products": []
+}
+```
+   Description: This endpoint returns the products listed on DB.
+   
+   
+#### 4. API Endpoint: ` /products/:id ` </br>
+   Method: `GET` </br>
+   Response 
+```json 
+{
+    "success": true,
+    "products": [
+          {}
+    ]
+}
+```
+   Description: This endpoint returns the single product.
+   
+   
 ## **Live Project -**
 
 Here it is [Swadeshi Ecomm Backend](https://swadeshi-ecomm.herokuapp.com/)
+
