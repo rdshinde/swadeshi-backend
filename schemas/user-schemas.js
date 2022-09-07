@@ -27,6 +27,7 @@ const UserSchema = new Schema({
   address: [
     {
       _id: { type: String, required: true },
+      address: { type: Schema.Types.Mixed, required: true },
     },
   ],
   createdAt: { type: Date, default: Date.now() },
