@@ -1,7 +1,7 @@
 const express = require("express");
 const categoryV1 = express.Router();
 const { Category } = require("../models/category.models");
-
+const { Product } = require("../models/product.models");
 categoryV1
   .route("/")
   .get(async (req, res) => {
@@ -34,10 +34,13 @@ categoryV1
 categoryV1.route("/:id").get(async (req, res) => {
   try {
     const { id } = req?.params;
-    const category = await Category.find({ _id: id });
-
+    let category = await Category.find({ _id: id });
+    const products = await Product.find({
+      categoryName: category[0].categoryName,
+    });
+    
     if (category) {
-      return res.json({ category, success: true });
+      return res.json({ category, success: true, products });
     }
   } catch (err) {
     res.status(404).json({
