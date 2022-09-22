@@ -49,7 +49,7 @@ authV1.route(`/signup`).post(async (req, res) => {
   try {
     const user = req.body;
     const userEmail = user.email;
-    const isDuplicateUser = await User.find({ email: userEmail });
+    const isDuplicateUser = await User.find({ email: userEmail }).count();
     if (isDuplicateUser) {
       res.status(422).json({
         success: false,
