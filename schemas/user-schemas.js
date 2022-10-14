@@ -37,3 +37,4 @@ const UserSchema = new Schema({
 UserSchema.pre("save", saveUserDoc);
 
 module.exports = { UserSchema };
+ 
