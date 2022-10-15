@@ -5,7 +5,7 @@ const productSchema = new Schema({
   _id: { type: Number, required: true },
   name: String,
   make: String,
-  imageUrl: String,
+  imgUrl: String,
   description: String,
   originalPrice: String,
   discountedPrice: String,
