@@ -12,8 +12,6 @@ app.use(cors());
 
 const { connectDB } = require("./db/db.connect.js");
 
-connectDB();
-
 const { DocsObj } = require("./utils");
 const { productsV1 } = require("./routes/product.routes");
 const { categoryV1 } = require("./routes/categories.routes");
@@ -62,6 +60,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
+  });
 });
